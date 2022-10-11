@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Atlas</title>
+    </head>
+    <style>
+        div {
+            overflow: hidden;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            text-align: center;
+            background:white;
+            color:black;
+            transition: all 2s ease;
+        }
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bold;
+        } 
+        h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+        hr {
+            height: 5;
+            background-color: black;
+        }
+        .countries{
+            display: flex;
+            justify-content: center;
+        }
+        .start{
+            font-size: 20px;
+            padding: 24px 75px;
+            font-weight: bold;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            border: none;
+            border-radius: 45px;
+        }
+        .start:hover {
+            background-color: #2EE59D;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+        .guess {
+            font-size: 18px;
+            padding: 16px 40px;
+            font-weight: bold;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            border: none;
+            border-radius: 45px;
+        }
+        .guess:hover{
+            background-color: #2EE59D;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+        .reload{
+            font-size: 20px;
+            padding: 24px 75px;
+            font-weight: bold;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            border: none;
+            border-radius: 45px;
+        }
+        .reload:hover{
+            background-color: #2EE59D;
+            box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+        ol{
+            display: inline-block;
+            text-align: left;
+        }
+        li{
+            font-size: 22px;
+            line-height: 1.6;
+        }
+        .gameGuesses {
+            visibility: hidden;
+            justify-content: center;
+            display: flex;
+            
+        }
+        p{
+            border-color: black;
+            border-width: 2px; 
+            border-style: solid;
+            width: 50%;
+            font-size: 24px;
+        }
+        img {
+            margin: 10px 10px;
+        }
+    </style>
+    <script defer >
+        function worldleStart() {
+            let countryImage;
+            let guess;
+            let guess2;
+            let guess3;
+            let guess4;
+            let guess5;
+            let guessCount = 0;
+            let paragraph1;
+
+            function gameStart() {
+                var randNum =  Math.floor(Math.random()* 255 ) + 1;
+                var img = document.createElement("img");
+                if (randNum === 1) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/ru/vector.svg';
+                    countryImage = 'Russia';
+                } else if (randNum === 2){
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/it/vector.svg';
+                    countryImage = 'Italy';
+                } else if (randNum === 3) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/ca/vector.svg';
+                    countryImage = 'Canada';
+                } else if (randNum === 4) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/mx/vector.svg';
+                    countryImage = 'Mexico';
+                } else if (randNum === 5) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/cn/vector.svg';
+                    countryImage = 'China';
+                } else if (randNum === 6) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/gb/vector.svg';
+                    countryImage = 'Uk';
+                } else if (randNum === 7) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/us/vector.svg';
+                    countryImage = 'Us';
+                } else if (randNum === 8) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/db277d9a0d2cecf581cebc56f2a6c4caa21d2229/public/images/countries/in/vector.svg';
+                    countryImage = 'India';
+                } else if (randNum === 9) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/6be795340437ee2de128be0d156878b69e11393e/public/images/countries/au/vector.svg';
+                    countryImage = 'Australia';
+                } else if (randNum === 10) {
+                    img.src = 'https://raw.githubusercontent.com/teuteuf/worldle/5755f1c32b5daa3d490005dc67b780d2951fa5ee/public/images/countries/br/vector.svg';
+                    countryImage = 'Brazil';
+                } else {
+                    console.log("this is a very good program obviously")
+                }
+                img.style.width = '500px';
+                img.style.height = '500px';
+                document.getElementById("countries").appendChild(img);
+                document.getElementById("start").style.visibility = 'hidden';
+                document.getElementById("guess").style.visibility = 'visible';
+                document.getElementById("howToPlay").style.visibility = 'hidden';
+                document.getElementById("gameGuesses").style.visibility = 'visible'
+                return countryImage;
+
+            }
+            function gameGuess(promptMessage) {
+                guess = prompt(promptMessage);
+                checkAnswer();
+            } 
+            function checkAnswer() {
+                guessCount += 1;
+                if (guess === countryImage) {
+                    displayText();
+                    winScreen(guessCount);
+                } else {
+                    displayText();
+                    paragraph1.innerText += '❌';
+                    setTimeout(function() {
+                        if (guessCount === 5){
+                            alert("You didn't guess " + countryImage + " in 5 tries. Try again!");
+                            document.body.style.backgroundColor = 'fireBrick';
+                            guessCount = 0;
+                            reloadPrep()
+                        } else {
+                            gameGuess('Incorrect. Remaining Guesses: ' + (5 - guessCount));
+                        }
+                        
+                    }, 0);
+                    
+                }
+            }
+            function displayText (){
+                paragraph1 = document.getElementById("gameGuess" + guessCount);
+                paragraph1.innerText += guess;
+            }
+            function winScreen (tries) {
+                let multiple;
+                if(tries>1){
+                    multiple = 'es';
+                } else{
+                    multiple = '';
+                }
+                alert('You guessed ' + countryImage + ' after ' + tries + ' guess' + multiple + '! Good Job!');
+                paragraph1.innerText += '✅';
+                reloadPrep();
+                document.body.style.backgroundColor = "rgb(22,163,74)";
+            }
+            function reloadPrep(){
+                document.getElementById("reload").style.visibility = 'visible';
+                document.getElementById("reload").scrollIntoView();
+            }
+            function gameReload() {
+                document.location.reload();
+            }
+        }
+
+        function game2(){
+
+        } 
+    </script>
+    </head>
+    <body>
+        <h1 > WOR<span style="color: green">L</span>DLE </h1>
+        <hr> 
+        <br>
+        
+        <button id = 'guess' class = 'guess' style="visibility: hidden" onClick="gameGuess('Guess a Country')"> Guess Country</button>
+        <br><br>
+        <div id = 'countries'>
+
+        </div>
+        <div id="gameGuesses" class = "gameGuesses">
+            <p><span style="font-weight: bold">1st Guess</span><br/><span id='gameGuess1'></span></p>
+            <p><span style="font-weight: bold">2nd Guess</span><br/><span id='gameGuess2'></span></p>
+            <p><span style="font-weight: bold">3rd Guess</span><br/><span id='gameGuess3'></span></p>
+            <p><span style="font-weight: bold">4th Guess</span><br/><span id='gameGuess4'></span></p>
+            <p><span style="font-weight: bold">5th Guess</span><br/><span id='gameGuess5'></span></p>
+        </div>
+        <div id ='howToPlay' class = 'howToPlay'>
+            <h2>How to Play:</h2>
+            <ol>
+                <li>Click Start Game to start the game</li>
+                <li>Look at the silhouette of the country and click Guess Country to guess</li>
+                <li>You have 5 tries to guess the mystery country</li>
+                <li>If you can't guess the country in 5 tries you lose</li>
+                <li>Make sure to capitalize the first letter in the country's name</li>
+            </ol>
+        </div>
+        <button id = 'reload' class = 'reload' style="visibility: hidden;" onClick="gameReload()">Play Again</button>
+        <br><br><br>
+        <button id = 'start' class = 'start' onclick="gameStart()">Start Gane</button>
+    </body>
+</html>
